@@ -20,7 +20,8 @@ module.exports = function ( ctx ) {
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
       'i18n',
-      'axios'
+      'axios',
+      'vuex-router-sync',
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -140,9 +141,8 @@ module.exports = function ( ctx ) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'Sysait\'s web site',
-        short_name: 'Sysait\'s web site',
-        description: 'promoting the start-up SYSAIT (System Afrik Information and Technology).  The website\'s purpose is to share information about our start-up with users (who are visiting the website)',
+        name: 'Event\'s web site',
+        short_name: 'Event\'s web site',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -207,7 +207,7 @@ module.exports = function ( ctx ) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'quasar_sysait'
+        appId: 'quasar_Event'
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
