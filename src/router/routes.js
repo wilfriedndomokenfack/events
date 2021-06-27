@@ -4,7 +4,10 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
+      {
+        path: '',
+        name: "home",
+        component: () => import('pages/Index.vue') },
       {
         path: "/login",
         name: "login",
@@ -22,6 +25,11 @@ const routes = [
           breadcrumb: 'RegistrationPage'
         },
         component: () => import("pages/RegistrationPage.vue")
+      },
+      {
+        path: "/users/:tokenDatas",
+        name: 'confirmation',
+        component: () => import('pages/user/EmailConfirmationPage.vue'),
       },
     ]
   },

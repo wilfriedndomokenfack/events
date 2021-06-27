@@ -9,9 +9,14 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'PageIndex'
-})
+import { mapGetters } from 'vuex'
+export default {
+  name: 'PageIndex',
+  mounted(){
+    if(!this.currentUser) this.$router.push({ name: "login" });
+  },
+  computed: {
+    ...mapGetters(["currentUser"]),
+  },
+}
 </script>

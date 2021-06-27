@@ -1,5 +1,6 @@
 
 import store from '@/store'
+import { redirect } from "@/models/utils/common.js"
 
 import { notify } from "@/models/utils/common.js"
 import { getToken, postRegistration} from "@/models/user.js"
@@ -25,9 +26,9 @@ export const signup = async (user) => {
 
 export const logout = () => {
   store.dispatch("setCurrentUser", null);
-  deleteCookie('sy-jwt')
+  deleteCookie('lime-jwt')
   notify('green', 'Logout with success!')
+  redirect('login')
 
-  if(store.getters.currentRoute == "admin") store.$router.push({name: 'home'})
 
 };

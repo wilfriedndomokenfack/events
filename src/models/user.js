@@ -22,35 +22,16 @@ export const getToken = (userData) => {
 export const postRegistration = (userData) =>
   Api().post("/users", userData )
 
-export const getUserCourses = async (id) => {
-  try{
-    const response = await Api().get(`/users/${id}/get_user_courses`,)
-    const coursesIds = response?.data
-    store.dispatch("setUserCourses", coursesIds);
-
-  }catch(err){
-    console.log("error: " + err)
-  }
-
-}
 export const isSuperUser = async () => {
-    try{
-      let index = -1
-      if(store.getters.currentUser){
-        const id = store.getters.currentUser.id
-        let response = await Api().get(`/users/${id}/get_user_roles` )
-        index = response.data.indexOf('admin')
-      }
-      return index > -1 ? true : false
-    }catch(error){
-      console.log("error: " + error)
+  try{
+    let index = -1
+    if(store.getters.currentUser){
+      const id = store.getters.currentUser.id
+      let response = await Api().get(`/users/${id}/get_user_roles` )
+      index = response.data.indexOf('admin')
     }
-}
-
-export const isEnrollToTraining = (training_id) => {
-  let response = -1
-  if(store.getters.currentUser?.coursesIds){
-    response = store.getters.currentUser?.coursesIds.indexOf(training_id)
+    return index > -1 ? true : false
+  }catch(error){
+    console.log("error: " + error)
   }
-  return response == -1 ? false : true
 }

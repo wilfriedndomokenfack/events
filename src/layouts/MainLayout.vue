@@ -9,17 +9,16 @@
 
 <script>
 import Header from "../components/Header.vue"
-import { defineComponent } from 'vue'
 
-export default defineComponent({
+export default {
   name: 'MainLayout',
   components: {
     Header
   },
-
-  setup () {
+  data () {
     return {
     }
   }
-})
+}
+
 </script>

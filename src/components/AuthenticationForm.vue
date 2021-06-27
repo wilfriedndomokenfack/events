@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: 'ComponentName',
   props: ["goTo"],
@@ -94,12 +95,13 @@ export default {
         password: null,
       },
       passwordRepeat: null,
-      currentRoute: this.$router.currentRoute.value.name
+
     }
   },
   computed: {
+    ...mapGetters(["userCredentials", "currentRoute"]),
     isRegistration(){
-      return this.$router.currentRoute.value.name == "registrazione"
+      return this.currentRoute == "registrazione"
     }
   },
   methods: {

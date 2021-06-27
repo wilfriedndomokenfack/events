@@ -17,7 +17,6 @@ export const setCookie = ( key, value, expiryDate) => {
   };
 
 
-
   if (!Cookies.has(key)) Cookies.set(key, value, options);
 };
 

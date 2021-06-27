@@ -1,15 +1,28 @@
-import { boot } from 'quasar/wrappers'
-import { createI18n } from 'vue-i18n'
+import Vue from 'vue'
+import VueI18n from 'vue-i18n'
 import messages from 'src/i18n'
 
-const i18n = createI18n({
-  locale: 'en-US',
+Vue.use(VueI18n)
+
+let response = 'en-us'
+let laguages = ['fr', 'it']
+const laguagesCodes = laguages.map( v => v.substring(0, 2))
+let userLang = navigator.language || navigator.userLanguage;
+let code = userLang.substring(0, 2);
+
+if(laguagesCodes.indexOf(code) > -1){
+  response = code;
+}
+
+const i18n = new VueI18n({
+  locale: response,
+  fallbackLocale: response,
   messages
 })
 
-export default boot(({ app }) => {
+export default ({ app }) => {
   // Set i18n instance on app
-  app.use(i18n)
-})
+  app.i18n = i18n
+}
 
 export { i18n }

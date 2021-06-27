@@ -18,40 +18,63 @@
         </q-card>
       </q-page>
     </q-page-container>
+    <RegistrationPopupComponent
+      v-if="message"
+      propTitle="Errore di login"
+      :propMessage="message"
+      @closed="pupopChanged"
+      :flag="flag"
+    />
   </q-layout>
 </template>
 
 <script>
 import AuthenticationForm from "../components/AuthenticationForm.vue"
+import RegistrationPopupComponent from "@/components/RegistrationPopupComponent.vue"
+import { login } from "@/models/auth/Auth";
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'LoginPage',
   components: {
-    AuthenticationForm
+    AuthenticationForm,
+    RegistrationPopupComponent
+  },
+
+  data(){
+    return {
+      message: null,
+      flag: null
+    };
+  },
+  mounted(){
+    if(this.currentUser) this.$router.push({ name: "home" });
   },
   computed: {
-
+    ...mapGetters(["currentUser"]),
   },
-    data: () => ({
-
-    }),
-
-    async mounted () {
-
+  methods: {
+    pupopChanged(){
+      this.message = null
     },
-    methods: {
-      onSubmit(form){
+    async onSubmit(form){
         delete form.nome
         delete form.cognome
+
+        const response = await login(form);
+        this.flag = response.flag
+        if(this.flag == 3 || this.flag == 2){
+          this.message = response.message
+        }else if(this.flag == 1){
+          this.$store.dispatch("setCurrentUser", response.message );
+        }else{
+          this.message = "Internal server error: Contact The administrator"
+        }
       }
     },
   }
 </script>
 <style lang="scss" scoped>
-  img{
-    max-width: 80px;
-  }
-
   .subtitle{
     font-size: 120%;
     font-weight: 200;
