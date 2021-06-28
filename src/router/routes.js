@@ -7,7 +7,20 @@ const routes = [
       {
         path: '',
         name: "home",
-        component: () => import('pages/Index.vue') },
+        component: () => import('pages/Index.vue')
+      },
+      {
+        path: "/newEvent",
+        name: 'newEvent',
+        meta: { breadcrumb: 'Create a new Event' },
+        component: () => import('pages/events/NewEvent.vue'),
+      },
+      {
+        path: ":event_id/edit",
+        name: 'editEvent',
+        meta: { breadcrumb: 'Edit a Event' },
+        component: () => import('pages/events/EditEvent.vue'),
+      },
       {
         path: "/login",
         name: "login",

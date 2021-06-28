@@ -10,7 +10,7 @@ import { notify } from "@/models/utils/common.js"
 
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
-
+import events from './events/index'
 Vue.use(Vuex)
 
 
@@ -34,7 +34,7 @@ export default new Store({
   strict: true,
   state: initialState(),
   modules: {
-
+    events
   },
 
   mutations: {
@@ -60,10 +60,9 @@ export default new Store({
 
   },
   getters: {
-
     currentUser: state => state.currentUser,
-    token: state => state.token
-,
+    token: state => state.token,
+
     currentRoute: state => (state.route ? state.route.name : null),
     previousRoute: state => (state.route ? state.route.from.name : null)
   },

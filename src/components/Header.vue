@@ -1,13 +1,13 @@
 <template>
 <div>
   <q-header elevated>
-      <q-toolbar>
-        <q-toolbar-title>
-          my-lime Events
-        </q-toolbar-title>
-        <div class="row items-center justify-between">
-          <div class="col-6"  v-if="!$q.screen.lt.sm">{{ today_date }} </div>
-          <div class="col-6" v-if="!currentUser">
+      <div class="row items-center ">
+        <div class="col q-pl-md text-h5 ">
+          Events
+        </div>
+        <div class="col row items-center justify-between">
+          <div class="col-5 text-right"  v-if="!$q.screen.lt.sm">{{ today_date }} </div>
+          <div class="col-3" v-if="!currentUser">
             <q-btn
               to="/login"
               no-caps
@@ -36,7 +36,7 @@
               </q-btn>
           </div>
         </div>
-      </q-toolbar>
+      </div>
     </q-header>
     </div>
 </template>

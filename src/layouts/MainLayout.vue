@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh LpR lfr">
     <Header/>
-    <q-page-container>
+    <q-page-container class="constrain">
       <router-view />
     </q-page-container>
   </q-layout>

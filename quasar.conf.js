@@ -91,9 +91,9 @@ module.exports = function ( ctx ) {
     framework: {
       iconSet: 'fontawesome-v5', //'material-icons', // Quasar icon set
       lang: "it", // Quasar language pack
-      components: [  //quasar carousel
-
-        ],
+      components: [
+        
+      ],
 
 
 
