@@ -26,6 +26,7 @@ export const signup = async (user) => {
 
 export const logout = () => {
   store.dispatch("setCurrentUser", null);
+  store.dispatch("events/setEvents", null);
   deleteCookie('lime-jwt')
   notify('green', 'Logout with success!')
   redirect('login')

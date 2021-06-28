@@ -1,11 +1,17 @@
-import axios from "axios";
+import axios from "axios"
+import store from "@/store"
 
-const headers = {
-    'Accept': 'application/json',
-};
-const baseURL = process.env.EVENT_API_HOST
+
 
 const Api = function() {
+  const headers = {
+    'Accept': 'application/json',
+  };
+  console.log(store?.getters.token)
+  if(store && store?.getters.token) headers["Authorization"] = `Bearer ${store.getters.token}`;
+  const baseURL = process.env.EVENT_API_HOST
+
+
   return axios.create({ baseURL, headers});
 };
 

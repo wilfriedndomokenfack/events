@@ -6,7 +6,7 @@
 
 <script>
 import EventForm from "@/components/EventForm.vue";
-import { sendToEvents } from "@/models/event.js"
+import { sendToEvents, prepareEvent } from "@/models/event.js"
 import { mapGetters } from "vuex";
 
 import { deepCopy, notify } from '@/models/utils/common.js'
@@ -44,6 +44,7 @@ export default {
     },
      async saveForm(form){
       let response = await sendToEvents(form)
+  
 
       this.$store.dispatch("events/updateEvent", { ...response });
       this.$router.push({ path: "/"})

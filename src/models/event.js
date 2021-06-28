@@ -1,6 +1,7 @@
 import Api from "@/models/Api";
 import { notify } from "@/models/utils/common.js"
 import store from "@/store"
+import moment from "moment"
 
 export const events = () =>
   Api().get("/events"); // INDEX
@@ -16,6 +17,8 @@ export const sendToEvents = async (event) => {
   try{
     let response = await saveEvent(event)
     returnData = response?.data
+    returnData.start_time = moment(returnData.start_time).subtract(1, 'hours').format('HH:mm');
+    returnData.end_time = moment(returnData.end_time).subtract(1, 'hours').format('HH:mm');
   }catch(err){
     message = 'ERROR: ' + err
     color = 'red'
@@ -33,4 +36,9 @@ export const saveEvent = async event => { // CREATE OR UPDATE
     responce = await Api().post(`/events`, event ); // CREATE
   }
   return responce
+}
+
+export const prepareEvent = event => {
+  event.start_time = moment(event.start_time).subtract(1, 'hours').format('HH:mm');
+  event.end_time = moment(event.end_time).subtract(1, 'hours').format('HH:mm');
 }

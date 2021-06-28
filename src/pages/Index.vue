@@ -11,8 +11,8 @@
       <div class="col">
         <AddElementBtn link="newEvent"/>
       </div>
-      <div class="col" v-if="renderComponent">
-        <EventsComponent :propEvents="events" :key="myKey" />
+      <div class="col" v-if="renderComponent && localEvents">
+        <EventsComponent :propEvents="localEvents" :key="myKey" />
       </div>
     </div>
   </q-page>
@@ -20,10 +20,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { events } from "@/models/event.js";
+import { events, prepareEvent } from "@/models/event.js";
 import EventsComponent from "@/components/EventsComponent.vue";
 import AddElementBtn from "@/components/AddElementBtn.vue";
-
+import { deepCopy } from "@/models/utils/common.js"
+import moment from "moment"
 export default {
   name: "EventsPage",
   components: {
@@ -43,6 +44,7 @@ export default {
       myKey: 3,
       filteredEvents: [],
       renderComponent: true,
+      localEvents: null
     };
   },
   computed: {
@@ -59,15 +61,24 @@ export default {
     if (!this.events) {
       await this.getEvents();
     }
+    this.localEvents = deepCopy(this.events)
     this.renderComponent = true;
   },
   methods: {
+
     async getEvents() {
       this.$q.loading.show();
       try {
         const response = await events();
         // response.data = [];
-        this.$store.dispatch("events/setEvents", response?.data);
+        this.localEvents = await deepCopy(response?.data)
+
+        this.localEvents.map(v => {
+          prepareEvent(v)
+        })
+
+        this.$store.dispatch("events/setEvents", this.localEvents);
+
         this.myKey = !this.myKey;
       } catch (e) {
         console.log(e)

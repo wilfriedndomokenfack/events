@@ -1,11 +1,11 @@
 <template>
 <div>
   <q-header elevated>
-      <div class="row items-center ">
+      <div class="row items-center constrain">
         <div class="col q-pl-md text-h5 ">
           Events
         </div>
-        <div class="col row items-center justify-between">
+        <div class="col row items-center justify-end">
           <div class="col-5 text-right"  v-if="!$q.screen.lt.sm">{{ today_date }} </div>
           <div class="col-3" v-if="!currentUser">
             <q-btn
@@ -15,7 +15,7 @@
               color="white" flat
             />
           </div>
-          <div v-else class="col-6 items-center row text-right">
+          <div v-else class="col-5 items-center justify-end row text-right">
             <div class="text-white text-bold">
               Ciao {{ currentUser.nome }}, {{ currentUser.cognome }}
             </div>
