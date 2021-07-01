@@ -49,7 +49,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "currentUser"
+      "currentUser",
+      "token"
     ]),
     ...mapGetters("events",[
       "events"
@@ -57,8 +58,8 @@ export default {
   },
 
   async mounted() {
-    if(!this.currentUser) this.$router.push({ name: "login" });
-    if (!this.events) {
+    if(!this.currentUser || !this.token) this.$router.push({ name: "login" });
+    if (!this.events && this.token) {
       await this.getEvents();
     }
     this.localEvents = deepCopy(this.events)

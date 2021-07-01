@@ -91,8 +91,8 @@ export default {
       form: {
         nome: null,
         cognome: null,
-        email: null,
-        password: null,
+        email: "wilfried.ndomo@gmail.com",
+        password: "1234567",
       },
       passwordRepeat: null,
 
