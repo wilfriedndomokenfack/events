@@ -1,4 +1,5 @@
 <template>
+<div>
   <q-form
     style="min-width: 400px"
     @submit="onSubmit"
@@ -54,6 +55,7 @@
     <div class="row items-center justify-center">
       <div v-if="!isRegistration">
         <q-btn
+          @click="changePorgotPassword()"
           no-caps
           label="Password dimenticata?"
           color="primary" flat
@@ -79,12 +81,18 @@
       />
     </div>
   </q-form>
+  <ForgotPasswordComponent v-if="forgotPassword" @close="changePorgotPassword"/>
+  </div>
 </template>
 
 <script>
+import ForgotPasswordComponent from "@/components/ForgotPasswordComponent.vue";
 import { mapGetters } from "vuex";
 export default {
   name: 'ComponentName',
+  components: {
+    ForgotPasswordComponent
+  },
   props: ["goTo"],
   data () {
     return {
@@ -95,6 +103,7 @@ export default {
         password: "1234567",
       },
       passwordRepeat: null,
+      forgotPassword: false,
 
     }
   },
@@ -105,6 +114,9 @@ export default {
     }
   },
   methods: {
+    changePorgotPassword(){
+      this.forgotPassword = !this.forgotPassword
+    },
     onSubmit(){
       this.$emit("onSubmit", this.form)
     }

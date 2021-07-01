@@ -35,9 +35,16 @@ export default {
     events: {
       immediate: true,
       handler() {
+        this.renderComponent = true
         this.myKey++
       }
-    }
+    },
+    searchParams: {
+      immediate: true,
+      handler(newVal, oldVal) {
+        if(this.currentUser) this.searchParamsChanged(newVal, oldVal)
+      }
+    },
   },
   data() {
     return {
@@ -50,10 +57,12 @@ export default {
   computed: {
     ...mapGetters([
       "currentUser",
-      "token"
+      "token",
+
     ]),
     ...mapGetters("events",[
-      "events"
+      "events",
+      "searchParams"
     ])
   },
 
@@ -66,12 +75,15 @@ export default {
     this.renderComponent = true;
   },
   methods: {
-
+    searchParamsChanged(newVal, oldVal){
+        this.renderComponent = false
+        this.$store.dispatch("events/setEvents", null);
+        this.getEvents()
+    },
     async getEvents() {
       this.$q.loading.show();
       try {
         const response = await events();
-        // response.data = [];
         this.localEvents = await deepCopy(response?.data)
 
         this.localEvents.map(v => {

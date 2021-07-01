@@ -8,9 +8,11 @@ export default {
   actions,
   state: {
     events: null,
+    searchParams: {},
   },
 
   getters: {
     events: state => state.events,
+    searchParams: state => state.searchParams,
   }
 };

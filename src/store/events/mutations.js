@@ -14,9 +14,14 @@ const updateEvent = (state, payload) => {
   state.events = [payload, ...events]
 }
 
+const setSearchParams = (state, payload) => {
+  state.searchParams = payload || {};
+}
+
 export default {
   setEvents,
   addEvent,
   removeEvent,
   updateEvent,
+  setSearchParams
 };

@@ -15,12 +15,10 @@ export default {
   },
   methods: {
     async saveForm(form){
-      console.log("response form", form)
       let response = await sendToEvents(form)
-      console.log("response", response)
 
      this.$store.dispatch("events/addEvent", { ...response });
-    this.$router.push({ path: "/"})
+      this.$router.push({ path: "/"})
     }
   }
 }

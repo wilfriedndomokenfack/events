@@ -1,9 +1,11 @@
 # Quasar App (events-management)
 
 \"event management\"
-
+## Node
+Switch to version >= 10.18.1
 ## Install the dependencies
 ```bash
+npm install quasar-cli -g
 yarn
 ```
 
@@ -18,5 +20,3 @@ quasar dev
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.conf.js](https://v2.quasar.dev/quasar-cli/quasar-conf-js).

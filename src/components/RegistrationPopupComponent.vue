@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { redirect } from "@/models/utils/common.js"
 export default {
   name: "RegistrationPopupComponent",
   props:{
@@ -47,9 +48,10 @@ export default {
     modelChanged(){
       if(!this.model){
         if(this.flag == 1){
-          this.$router.push({
+          redirect("login")
+          /* this.$router.push({
             path: "/login"
-          })
+          }) */
         }
         this.$emit("closed")
       }

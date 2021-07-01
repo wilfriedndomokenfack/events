@@ -44,6 +44,11 @@ const routes = [
         name: 'confirmation',
         component: () => import('pages/user/EmailConfirmationPage.vue'),
       },
+      {
+        path: "/users/password/:tokenDatas",
+        name: 'resetPassword',
+        component: () => import('pages/user/PasswordResetPage.vue'),
+      }
     ]
   },
 

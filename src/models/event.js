@@ -3,8 +3,16 @@ import { notify } from "@/models/utils/common.js"
 import store from "@/store"
 import moment from "moment"
 
-export const events = () =>
-  Api().get("/events"); // INDEX
+export const events = () => {
+  const searchParams = store.getters["events/searchParams"]
+
+  const params = {
+    FromFilterDate: searchParams.FromFilterDate ?? "2021-01-01",
+    ToFilterDate: searchParams.ToFilterDate ?? "9021-01-01",
+  }
+  return Api().get("/events", { params: params }); // INDEX
+}
+
 
 export const deleteEvent = (id) =>
   Api().delete("/events/"+id); // DELETE
