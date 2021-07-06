@@ -6,15 +6,10 @@
   "author": "Wilfried Ndomo <Eventechnology@gmail.com>",
   "private": true,
   "scripts": {
-    "build": "quasar build",
+    "heroku-postbuild": "yarn global add @quasar/cli && SYSAIT_API_HOST=${SYSAIT_API_HOST} quasar build",
     "start": "node server.js"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-brands-svg-icons": "^5.15.2",
-    "@fortawesome/free-regular-svg-icons": "^5.15.2",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/vue-fontawesome": "^2.0.2",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "connect-history-api-fallback": "^1.6.0",
