@@ -6,7 +6,7 @@
   "author": "Wilfried Ndomo <Eventechnology@gmail.com>",
   "private": true,
   "scripts": {
-    "heroku-postbuild": "yarn global add @quasar/cli && EVENT_API_HOST=${EVENT_API_HOS} quasar build",
+    "heroku-postbuild": "yarn global add @quasar/cli && EVENT_API_HOST=${EVENT_API_HOST} quasar build",
     "start": "node server.js"
   },
   "dependencies": {
